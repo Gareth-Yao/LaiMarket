@@ -1,5 +1,8 @@
 package com.laioffer.laimarket;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.laioffer.laimarket.entity.Customer;
+
 import java.io.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -13,13 +16,13 @@ public class HelloServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html");
-
+        response.setContentType("application/json");
+        ObjectMapper mapper = new ObjectMapper();
+        Customer customer = new Customer();
+        customer.setEmail("y19976122010@gmail.com");
+        customer.setPassword("123456");
         // Hello
-        PrintWriter out = response.getWriter();
-        out.println("<html><body>");
-        out.println("<h1>" + message + "</h1>");
-        out.println("</body></html>");
+        response.getWriter().print(mapper.writeValueAsString(customer));
     }
 
     public void destroy() {
