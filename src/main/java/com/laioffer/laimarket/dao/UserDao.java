@@ -1,5 +1,6 @@
 package com.laioffer.laimarket.dao;
 
+import com.laioffer.laimarket.entity.Authorities;
 import com.laioffer.laimarket.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -21,10 +22,14 @@ public class UserDao {
     private SessionFactory sessionFactory;
 
     public void signUp(User user) {
+        Authorities authorities = new Authorities();
+        authorities.setAuthorities("ROLE_USER");
+        authorities.setEmail(user.getEmail());
         Session session = null;
         try {
             session = sessionFactory.openSession();
             session.beginTransaction();
+            session.save(authorities);
             session.save(user);
             session.getTransaction().commit();
         } catch (Exception ex) {
