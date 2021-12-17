@@ -26,6 +26,14 @@ public class CartItem {
     @ManyToOne
     private ListingItem listingItem;
 
+    public ListingItem getListingItem() {
+        return listingItem;
+    }
+
+    public void setListingItem(ListingItem listingItem) {
+        this.listingItem = listingItem;
+    }
+
     @ManyToOne
     @JsonIgnore
     private Cart cart;

@@ -21,6 +21,41 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int cartId;
 
+    private String cartName;
+
+
+    public int getCartId() {
+        return cartId;
+    }
+
+    public void setCartId(int cartId) {
+        this.cartId = cartId;
+    }
+
+    public String getCartName() {
+        return cartName;
+    }
+
+    public void setCartName(String cartName) {
+        this.cartName = cartName;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<CartItem> getCartItemList() {
+        return cartItemList;
+    }
+
+    public void setCartItemList(List<CartItem> cartItemList) {
+        this.cartItemList = cartItemList;
+    }
+
     @ManyToOne
     private User user;
 

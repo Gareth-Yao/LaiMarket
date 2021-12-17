@@ -2,6 +2,7 @@ package com.laioffer.laimarket.entity;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Map;
 
 /**
  * com.laioffer.laimarket.entity
@@ -23,8 +24,9 @@ public class User {
     private boolean is_active_buyer;
     private boolean is_active_seller;
 
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-    private List<Cart> cartList;
+    private Map<String, Cart> cartList;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ListingItem> listingItemsList;
@@ -37,11 +39,11 @@ public class User {
         this.listingItemsList = listingItemsList;
     }
 
-    public List<Cart> getCartList() {
+    public Map<String, Cart> getCartList() {
         return cartList;
     }
 
-    public void setCartList(List<Cart> cartList) {
+    public void setCartList(Map<String, Cart> cartList) {
         this.cartList = cartList;
     }
 
