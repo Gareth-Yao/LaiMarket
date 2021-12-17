@@ -1,5 +1,8 @@
 package com.laioffer.laimarket.entity;
 
+import javax.persistence.*;
+import java.util.List;
+
 /**
  * com.laioffer.laimarket.entity
  *
@@ -8,12 +11,39 @@ package com.laioffer.laimarket.entity;
  * @date 2021/12/16
  * <p>Description: </p>
  */
-public class Customer {
+
+@Entity
+@Table(name = "user")
+public class User {
+    private static final long serialVersionUID = 2652327633296064143L;
+    @Id
     private String email;
     private String password;
     private boolean enabled;
     private boolean is_active_buyer;
     private boolean is_active_seller;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    private List<Cart> cartList;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ListingItem> listingItemsList;
+
+    public List<ListingItem> getListingItemsList() {
+        return listingItemsList;
+    }
+
+    public void setListingItemsList(List<ListingItem> listingItemsList) {
+        this.listingItemsList = listingItemsList;
+    }
+
+    public List<Cart> getCartList() {
+        return cartList;
+    }
+
+    public void setCartList(List<Cart> cartList) {
+        this.cartList = cartList;
+    }
 
     public String getEmail() {
         return email;
